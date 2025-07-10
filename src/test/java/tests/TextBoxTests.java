@@ -25,8 +25,8 @@ public class TextBoxTests {
     @Test
     void fillFormTest() throws InterruptedException {
         open("/automation-practice-form");
-        $("#firstName").setValue("Ivanov");
-        $("#lastName").setValue("Ivan");
+        $("#firstName").setValue("Ivan");
+        $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("Ivan@ivan.com");
         $(".custom-control-label").click();
         $("#userNumber").setValue("1234567890");
@@ -38,8 +38,6 @@ public class TextBoxTests {
         $(byText("Arts")).click();
         $(".custom-control.custom-checkbox.custom-control-inline [for=hobbies-checkbox-1]").click();
         $(".custom-control.custom-checkbox.custom-control-inline [for=hobbies-checkbox-2]").click();
-        //$("#uploadPicture").click();
-        //$(".form-file-label").click();
         $("#uploadPicture").sendKeys("C:/Users/Max/Downloads/Telegram Desktop/image_2025-03-12_22-11-45.png");
         $("#currentAddress").setValue("California");
         $(".col-md-4.col-sm-12").click();
