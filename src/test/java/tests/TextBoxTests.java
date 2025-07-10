@@ -1,11 +1,13 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.impl.Downloads;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -33,22 +35,19 @@ public class TextBoxTests {
         $(".react-datepicker__year-select").selectOption("1995");
         $(byText("28")).shouldBe(visible).click();
         $("#subjectsInput").setValue("a");
-        Thread.sleep(5000);
-        //$$(".subjects-auto-complete__menu .subjects-auto-complete__option")
-                //.first()
-                //.shouldBe(visible);
-
-
-        // Ожидание появления списка
-        $$(".subjects-auto-complete__menu .subjects-auto-complete__option")
-                .first()
-                .shouldBe(visible);
-
-        // Выбор значения из списка
-        $$("div[class*='subjects-auto-complete__option']").find(text("Maths")).click();
-
-
-
+        $(byText("Arts")).click();
+        $(".custom-control.custom-checkbox.custom-control-inline [for=hobbies-checkbox-1]").click();
+        $(".custom-control.custom-checkbox.custom-control-inline [for=hobbies-checkbox-2]").click();
+        //$("#uploadPicture").click();
+        //$(".form-file-label").click();
+        $("#uploadPicture").sendKeys("C:/Users/Max/Downloads/Telegram Desktop/image_2025-03-12_22-11-45.png");
+        $("#currentAddress").setValue("California");
+        $(".col-md-4.col-sm-12").click();
+        $(byText("Haryana")).click();
+        $("#city").click();
+        $(byText("Panipat")).click();
+        $("#submit").click();
+        Thread.sleep(50000);
 
 
         $("#currentAddress").setValue("Street");
