@@ -1,13 +1,10 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.impl.Downloads;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.by;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -18,44 +15,40 @@ public class TextBoxTests {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
-        Configuration.timeout = 5000; // default 4000
     }
 
     @Test
-    void fillFormTest() throws InterruptedException {
+    void fillFormTest() {
         open("/automation-practice-form");
         $("#firstName").setValue("Ivan");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("Ivan@ivan.com");
-        $(".custom-control-label").click();
+        $("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("1234567890");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("January");
         $(".react-datepicker__year-select").selectOption("1995");
-        $(byText("28")).shouldBe(visible).click(); //насколько знаю про эту команду ничего не говорили, - нет ли способа лучше не через текст, и про shouldbe(visible) мы по моему не проходили, я сомневаюсь, что я сделал это правильно
+        $("#dateOfBirth-wrapper").$(byText("28")).click();
         $("#subjectsInput").setValue("a");
-        $(byText("Arts")).click();
-        $(".custom-control.custom-checkbox.custom-control-inline [for=hobbies-checkbox-1]").click();
-        $(".custom-control.custom-checkbox.custom-control-inline [for=hobbies-checkbox-2]").click();
-        $("#uploadPicture").sendKeys("C:/Users/Max/Downloads/Telegram Desktop/image_2025-03-12_22-11-45.png");
+        $("#subjectsContainer").$(byText("Arts")).click();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#uploadPicture").uploadFromClasspath("picture.png");
         $("#currentAddress").setValue("California");
-        $(".col-md-4.col-sm-12").click();//Не понимаю работу выпадающих списков, почти никогда не могу нажать на нижнеуровневый элемент почти всегда только верхний уровень
-        $(byText("Haryana")).click();
+        $("#state").click();
+        $("#state").$(byText("Haryana")).click();
         $("#city").click();
-        $(byText("Panipat")).click();
+        $("#city").$(byText("Panipat")).click();
         $("#submit").click();
-        $(".table-responsive").shouldHave(
-                text("Ivan Ivanov"),
-                text("Ivan@ivan.com"),
-                text("Male"),
-                text("1234567890"),
-                text("28 January,1995"),
-                text("Arts"),
-                text("Sports, Reading"),
-                text("image_2025-03-12_22-11-45.png"),
-                text("California"),
-                text("Haryana Panipat"),
-                text("Ivan Ivanov"));
+        $(".table-responsive").shouldHave(text("Ivan Ivanov"));
+        $(".table-responsive").shouldHave(text("Ivan@ivan.com"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("1234567890"));
+        $(".table-responsive").shouldHave(text("28 January,1995"));
+        $(".table-responsive").shouldHave(text("Arts"));
+        $(".table-responsive").shouldHave(text("Sports, Reading"));
+        $(".table-responsive").shouldHave(text("picture.png"));
+        $(".table-responsive").shouldHave(text("California"));
+        $(".table-responsive").shouldHave(text("Haryana Panipat"));
     }
     }
