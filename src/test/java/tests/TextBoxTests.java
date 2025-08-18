@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class TextBoxTests {
 
     @BeforeAll
-    static void beforeAll() {
+    static void setupEnvironment() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
@@ -20,6 +20,8 @@ public class TextBoxTests {
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
+        executeJavaScript("$('footer').remove();");
+        executeJavaScript("$('#fixedban').remove();");
         $("#firstName").setValue("Ivan");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("Ivan@ivan.com");
