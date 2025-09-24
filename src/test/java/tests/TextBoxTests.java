@@ -1,56 +1,61 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+public class TextBoxTests extends TestBase{
 
-public class TextBoxTests {
-
-    @BeforeAll
-    static void setupEnvironment() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-    }
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void fillFormTest() {
-        open("/automation-practice-form");
-        executeJavaScript("$('footer').remove();");
-        executeJavaScript("$('#fixedban').remove();");
-        $("#firstName").setValue("Ivan");
-        $("#lastName").setValue("Ivanov");
-        $("#userEmail").setValue("Ivan@ivan.com");
-        $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue("1234567890");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("January");
-        $(".react-datepicker__year-select").selectOption("1995");
-        $("#dateOfBirth-wrapper").$(byText("28")).click();
-        $("#subjectsInput").setValue("a");
-        $("#subjectsContainer").$(byText("Arts")).click();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFromClasspath("picture.png");
-        $("#currentAddress").setValue("California");
-        $("#state").click();
-        $("#state").$(byText("Haryana")).click();
-        $("#city").click();
-        $("#city").$(byText("Panipat")).click();
-        $("#submit").click();
-        $(".table-responsive").shouldHave(text("Ivan Ivanov"));
-        $(".table-responsive").shouldHave(text("Ivan@ivan.com"));
-        $(".table-responsive").shouldHave(text("Male"));
-        $(".table-responsive").shouldHave(text("1234567890"));
-        $(".table-responsive").shouldHave(text("28 January,1995"));
-        $(".table-responsive").shouldHave(text("Arts"));
-        $(".table-responsive").shouldHave(text("Sports, Reading"));
-        $(".table-responsive").shouldHave(text("picture.png"));
-        $(".table-responsive").shouldHave(text("California"));
-        $(".table-responsive").shouldHave(text("Haryana Panipat"));
+    void fullAutorisation() {
+        registrationPage.openPage()
+                .setFirstName("Ivan")
+                .setLastName("Ivanov")
+                .setEmail("Ivan@ivan.com")
+                .setGender("Male")
+                .setPhoneNumber("1234567890")
+                .setBirthDate("28", "January", "1995")
+                .setSubject("Arts")
+                .setHobbies("Sports")
+                .setHobbies("Reading")
+                .setPicture("picture.png")
+                .setCurrentAddress("California")
+                .setState("Haryana")
+                .setCity("Panipat")
+                .clickSubmit()
+                .checkRegistrationResult("Student Name", "Ivan Ivanov")
+                .checkRegistrationResult("Student Email", "Ivan@ivan.com")
+                .checkRegistrationResult("Gender", "Male")
+                .checkRegistrationResult("Mobile", "1234567890")
+                .checkRegistrationResult("Date of Birth", "28 January,1995")
+                .checkRegistrationResult("Subjects", "Arts")
+                .checkRegistrationResult("Hobbies", "Sports, Reading")
+                .checkRegistrationResult("Picture", "picture.png")
+                .checkRegistrationResult("Address", "California")
+                .checkRegistrationResult("State and City", "Haryana Panipat");
+    }
+
+
+    @Test
+    void authorizationWithRequiredFields(){
+        registrationPage.openPage()
+                .setFirstName("Ivan")
+                .setLastName("Ivanov")
+                .setGender("Male")
+                .setPhoneNumber("1234567890")
+                .clickSubmit()
+                .checkRegistrationResult("Student Name", "Ivan Ivanov")
+                .checkRegistrationResult("Gender", "Male")
+                .checkRegistrationResult("Mobile", "1234567890");
+    }
+    @Test
+    void negativeSubmitWithEmptyRequiredFields(){
+        registrationPage.openPage()
+                .setFirstName("Ivan")
+                .clickSubmit()
+                .checkInvalidLastname()
+                .checkEmptyGender()
+                .checkInvalidPhoneNumber();
     }
     }
