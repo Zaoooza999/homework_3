@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TextBoxPage {
 
-    public static SelenideElement fullNameInput = $("#userName"),
+    private static final SelenideElement fullNameInput = $("#userName"),
             emailInput = $("#userEmail"),
             currentAddresInput = $("#currentAddress"),
             permanentAdressInput = $("#permanentAddress"),

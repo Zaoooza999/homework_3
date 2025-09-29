@@ -2,6 +2,7 @@ package pages;
 
 
 import com.codeborne.selenide.SelenideElement;
+import pages.components.AdsBanners;
 import pages.components.Calendar;
 import pages.components.ResultTable;
 
@@ -10,7 +11,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
-    public static SelenideElement firstNameInput = $("#firstName"),
+    private static final SelenideElement firstNameInput = $("#firstName"),
     lastNameInput = $("#lastName"),
     emailInput = $("#userEmail"),
     genderInput = $("#genterWrapper"),
@@ -25,14 +26,9 @@ public class RegistrationPage {
     submitButton = $("#submit"),
     genderLabel = $(".custom-control-label");
 
-    Calendar calendar = new Calendar();
-    ResultTable resultTable = new ResultTable();
-
     public RegistrationPage openPage(){
         open("/automation-practice-form");
-        executeJavaScript("$('footer').remove();");
-        executeJavaScript("$('#fixedban').remove();");
-
+        AdsBanners.hideBanners();
         return this;
     }
 

@@ -8,7 +8,7 @@ public class RegistrationPageTests extends TestBase{
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void fullAutorisation() {
+    void fullAutorisationTest() {
         registrationPage.openPage()
                 .setFirstName("Ivan")
                 .setLastName("Ivanov")
@@ -38,7 +38,7 @@ public class RegistrationPageTests extends TestBase{
 
 
     @Test
-    void authorizationWithRequiredFields(){
+    void authorizationWithRequiredFieldsTest(){
         registrationPage.openPage()
                 .setFirstName("Ivan")
                 .setLastName("Ivanov")
@@ -50,7 +50,7 @@ public class RegistrationPageTests extends TestBase{
                 .checkRegistrationResult("Mobile", "1234567890");
     }
     @Test
-    void negativeSubmitWithEmptyRequiredFields(){
+    void negativeSubmitWithEmptyRequiredFieldsTest(){
         registrationPage.openPage()
                 .setFirstName("Ivan")
                 .clickSubmit()
