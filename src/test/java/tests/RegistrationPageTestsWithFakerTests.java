@@ -1,18 +1,29 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-public class RegistrationPageTests extends TestBase{
+import java.util.Locale;
+
+import static tests.TestData.*;
+
+public class RegistrationPageTestsWithFakerTests extends TestBase{
 
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void fullAutorizationTest() {
+    void fullAutorisazionTest() {
+        Faker faker = new Faker(new Locale("en-GB"));
+
+        String firstName = faker.name().firstName(),
+                lastName = faker.name().lastName(),
+                email = faker.internet().emailAddress();
+
         registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setEmail("Ivan@ivan.com")
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
                 .setGender("Male")
                 .setPhoneNumber("1234567890")
                 .setBirthDate("28", "January", "1995")
@@ -24,8 +35,8 @@ public class RegistrationPageTests extends TestBase{
                 .setState("Haryana")
                 .setCity("Panipat")
                 .clickSubmit()
-                .checkRegistrationResult("Student Name", "Ivan Ivanov")
-                .checkRegistrationResult("Student Email", "Ivan@ivan.com")
+                .checkRegistrationResult("Student Name", firstName+" "+lastName)
+                .checkRegistrationResult("Student Email", email)
                 .checkRegistrationResult("Gender", "Male")
                 .checkRegistrationResult("Mobile", "1234567890")
                 .checkRegistrationResult("Date of Birth", "28 January,1995")
