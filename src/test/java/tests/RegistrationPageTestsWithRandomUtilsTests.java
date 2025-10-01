@@ -1,21 +1,30 @@
 package tests;
 
-import org.junit.jupiter.api.BeforeEach;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-import static tests.TestData.*;
+import java.util.Locale;
 
-public class RegistrationPageTestsWithData extends TestBase{
+import static utils.RandomUtils.*;
+
+public class RegistrationPageTestsWithRandomUtilsTests extends TestBase{
 
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
-    void fullAutorisationTest() {
+    void fullAutorisazionTest() {
+        String firstName = getRandomString(10),
+                lastName = getRandomString(10),
+                email = getRandomEmail(),
+                currentAddress = getRandomCurrentAddress();
+
+
+
         registrationPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
-                .setEmail("Ivan@ivan.com")
+                .setEmail(email)
                 .setGender("Male")
                 .setPhoneNumber("1234567890")
                 .setBirthDate("28", "January", "1995")

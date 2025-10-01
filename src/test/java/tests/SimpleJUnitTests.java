@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class SimpleJUnitTest {
+public class SimpleJUnitTests {
 
     @BeforeAll
     static void beforeAll() {System.out.println("\n### beforeAll()\n");}

@@ -3,16 +3,18 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-public class RegistrationPageTests extends TestBase{
+import static tests.TestData.*;
+
+public class RegistrationPageWithDataTests extends TestBase{
 
     RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void fullAutorizationTest() {
-        registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setEmail("Ivan@ivan.com")
+        RegistrationPage registrationPage1 = registrationPage.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
                 .setGender("Male")
                 .setPhoneNumber("1234567890")
                 .setBirthDate("28", "January", "1995")
@@ -24,8 +26,8 @@ public class RegistrationPageTests extends TestBase{
                 .setState("Haryana")
                 .setCity("Panipat")
                 .clickSubmit()
-                .checkRegistrationResult("Student Name", "Ivan Ivanov")
-                .checkRegistrationResult("Student Email", "Ivan@ivan.com")
+                .checkRegistrationResult("Student Name", firstName + " " + lastName)
+                .checkRegistrationResult("Student Email", email)
                 .checkRegistrationResult("Gender", "Male")
                 .checkRegistrationResult("Mobile", "1234567890")
                 .checkRegistrationResult("Date of Birth", "28 January,1995")
