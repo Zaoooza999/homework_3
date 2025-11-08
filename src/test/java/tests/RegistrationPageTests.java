@@ -6,53 +6,52 @@ import pages.RegistrationPage;
 public class RegistrationPageTests extends TestBase{
 
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData data = new TestData();
 
     @Test
     void fullAutorizationTest() {
         registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setEmail("Ivan@ivan.com")
-                .setGender("Male")
-                .setPhoneNumber("1234567890")
-                .setBirthDate("28", "January", "1995")
-                .setSubject("Arts")
-                .setHobbies("Sports")
-                .setHobbies("Reading")
-                .setPicture("picture.png")
-                .setCurrentAddress("California")
-                .setState("Haryana")
-                .setCity("Panipat")
+                .setFirstName(data.firstName)
+                .setLastName(data.lastName)
+                .setEmail(data.email)
+                .setGender(data.gender)
+                .setPhoneNumber(data.phoneNumber)
+                .setBirthDate(data.day, data.month, data.year)
+                .setSubjects(data.randomSubjects)
+                .setHobbies(data.randomHobbies)
+                .setPicture(data.picture)
+                .setCurrentAddress(data.address)
+                .setState(data.state)
+                .setCity(data.city)
                 .clickSubmit()
-                .checkRegistrationResult("Student Name", "Ivan Ivanov")
-                .checkRegistrationResult("Student Email", "Ivan@ivan.com")
-                .checkRegistrationResult("Gender", "Male")
-                .checkRegistrationResult("Mobile", "1234567890")
-                .checkRegistrationResult("Date of Birth", "28 January,1995")
-                .checkRegistrationResult("Subjects", "Arts")
-                .checkRegistrationResult("Hobbies", "Sports, Reading")
-                .checkRegistrationResult("Picture", "picture.png")
-                .checkRegistrationResult("Address", "California")
-                .checkRegistrationResult("State and City", "Haryana Panipat");
+                .checkRegistrationResult("Student Name", data.firstName+" "+data.lastName)
+                .checkRegistrationResult("Student Email", data.email)
+                .checkRegistrationResult("Gender", data.gender)
+                .checkRegistrationResult("Mobile", data.phoneNumber)
+                .checkRegistrationResult("Date of Birth", data.day+" "+data.month+"," +data.year)
+                .checkRegistrationResult("Subjects", data.subjectsExpected)
+                .checkRegistrationResult("Hobbies", data.hobbiesExpected)
+                .checkRegistrationResult("Picture", data.picture)
+                .checkRegistrationResult("Address", data.address)
+                .checkRegistrationResult("State and City", data.state + " " + data.city);
     }
-
 
     @Test
     void authorizationWithRequiredFieldsTest(){
         registrationPage.openPage()
-                .setFirstName("Ivan")
-                .setLastName("Ivanov")
-                .setGender("Male")
-                .setPhoneNumber("1234567890")
+                .setFirstName(data.firstName)
+                .setLastName(data.lastName)
+                .setGender(data.gender)
+                .setPhoneNumber(data.phoneNumber)
                 .clickSubmit()
-                .checkRegistrationResult("Student Name", "Ivan Ivanov")
-                .checkRegistrationResult("Gender", "Male")
-                .checkRegistrationResult("Mobile", "1234567890");
+                .checkRegistrationResult("Student Name", data.firstName+" "+data.lastName)
+                .checkRegistrationResult("Gender", data.gender)
+                .checkRegistrationResult("Mobile", data.phoneNumber);
     }
     @Test
     void negativeSubmitWithEmptyRequiredFieldsTest(){
         registrationPage.openPage()
-                .setFirstName("Ivan")
+                .setFirstName(data.firstName)
                 .clickSubmit()
                 .checkInvalidLastname()
                 .checkEmptyGender()

@@ -1,11 +1,12 @@
 package pages;
 
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.AdsBanners;
 import pages.components.Calendar;
 import pages.components.ResultTable;
-
+import java.util.List;
 import static com.codeborne.selenide.Condition.cssValue;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -60,12 +61,17 @@ public class RegistrationPage {
         Calendar.setDate(day, month, year);
         return this;
     }
-    public RegistrationPage setSubject(String value){
-        subjectInput.setValue(value).pressEnter();
+    public RegistrationPage setSubjects(List<String> subjects){
+        for (String subject : subjects) {
+            subjectInput.setValue(subject).pressEnter();
+        }
         return this;
     }
-    public RegistrationPage setHobbies(String value) {
-        hobbiesInput.$(byText(value)).click();
+
+    public RegistrationPage setHobbies(List<String> hobbies) {
+        for (String hobby : hobbies) {
+            hobbiesInput.$(byText(hobby)).click();
+        }
         return this;
     }
     public RegistrationPage setPicture(String value){
@@ -81,6 +87,7 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage setCity(String value){
+        cityInput.shouldBe(Condition.enabled);
         cityInput.setValue(value).pressEnter();
         return this;
     }
