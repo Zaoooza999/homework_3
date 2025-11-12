@@ -3,13 +3,8 @@ import com.github.javafaker.Faker;
 import java.time.Month;
 import java.time.Year;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
-
-    public static void main(String[] args) {
-        System.out.println();
-    }
 
     private static final Faker faker = new Faker(new Locale("en-US"));
 
@@ -77,21 +72,19 @@ public class RandomUtils {
                 citiesOfUttarPradesh = {"Agra", "Lucknow", "Merrut"},
                 citiesOfHaryana = {"Karnal", "Panipat"},
                 citiesOfRajasthan = {"Jaipur", "Jaiselmer"};
-
-        if (state.equals("NCR")) return faker.options().option(citiesOfNCR);
-        else if (state.equals("Uttar Pradesh")) return faker.options().option(citiesOfUttarPradesh);
-        else if (state.equals("Haryana")) return faker.options().option(citiesOfHaryana);
-        else return faker.options().option(citiesOfRajasthan);
+        return switch (state) {
+            case "NCR" -> faker.options().option(citiesOfNCR);
+            case "Uttar Pradesh" -> faker.options().option(citiesOfUttarPradesh);
+            case "Haryana" -> faker.options().option(citiesOfHaryana);
+            default -> faker.options().option(citiesOfRajasthan);
+        };
     }
 
-    public static int getRandomInt(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
-    }
     public static String getRandomPhoneNumber() {
                 StringBuilder sb = new StringBuilder();
-        sb.append(getRandomInt(1, 9));
+        sb.append(faker.number().numberBetween(1, 9));
         for (int i = 0; i < 9; i++) {
-            sb.append(getRandomInt(0, 9));
+            sb.append(faker.number().numberBetween(0, 9));
         }
         return sb.toString();
     }
