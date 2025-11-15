@@ -25,6 +25,10 @@ public class RandomUtils {
         return String.format("%02d", day);
     }
 
+    public static String getRandomPhoneNumber(){
+        return faker.numerify("##########");
+    }
+
     public static String getRandomMonth() {
         int randomMonthNumber = faker.number().numberBetween(1, 12);
         String randomMonthName = Month.of(randomMonthNumber).name().toLowerCase();
@@ -80,14 +84,6 @@ public class RandomUtils {
         };
     }
 
-    public static String getRandomPhoneNumber() {
-                StringBuilder sb = new StringBuilder();
-        sb.append(faker.number().numberBetween(1, 9));
-        for (int i = 0; i < 9; i++) {
-            sb.append(faker.number().numberBetween(0, 9));
-        }
-        return sb.toString();
-    }
     public static String getRandomGender() {
         String[] genders = {"Male", "Female", "Other"};
         return faker.options().option(genders);
