@@ -8,6 +8,7 @@ import pages.components.Calendar;
 import pages.components.ResultTable;
 import java.util.List;
 import static com.codeborne.selenide.Condition.cssValue;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -25,11 +26,13 @@ public class RegistrationPage {
     stateInput = $("#react-select-3-input"),
     cityInput = $("#react-select-4-input"),
     submitButton = $("#submit"),
-    genderLabel = $(".custom-control-label");
+    genderLabel = $(".custom-control-label"),
+    pageTitle = $(".text-center");
 
     public RegistrationPage openPage(){
         open("/automation-practice-form");
         AdsBanners.hideBanners();
+        pageTitle.shouldHave(text("Practice Form"));
         return this;
     }
 
