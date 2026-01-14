@@ -21,6 +21,4 @@ public class TestData {
      randomSubjects = getRandomSubjects();
     String hobbiesExpected = String.join(", ", randomHobbies),
             subjectsExpected = String.join(", ", randomSubjects);
-
-
 }
