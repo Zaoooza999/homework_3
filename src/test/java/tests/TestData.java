@@ -1,6 +1,8 @@
 package tests;
 
 import utils.RandomUtils;
+
+import java.nio.file.Path;
 import java.util.List;
 import static utils.RandomUtils.*;
 
@@ -14,6 +16,7 @@ public class TestData {
             month = RandomUtils.getRandomMonth(),
             year = getRandomYear(),
             picture = getRandomPicture(),
+            nameOfPicture = Path.of(picture).getFileName().toString(),
             address = RandomUtils.getRandomAddress(),
             state = RandomUtils.getRandomState(),
             city = RandomUtils.getRandomCityByState(state);

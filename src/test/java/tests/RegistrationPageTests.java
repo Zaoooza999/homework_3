@@ -30,8 +30,9 @@ public class RegistrationPageTests extends TestBase{
                 .checkRegistrationResult("Mobile", data.phoneNumber)
                 .checkRegistrationResult("Date of Birth", data.day+" "+data.month+"," +data.year)
                 .checkRegistrationResult("Subjects", data.subjectsExpected)
-                .checkRegistrationResult("Hobbies", data.hobbiesExpected)
-                .checkRegistrationResult("Picture", data.picture)
+                .checkRegistrationResult("Hobbies", data.hobbiesExpected);
+        System.out.println(data.nameOfPicture);
+                registrationPage.checkRegistrationResult("Picture", data.nameOfPicture)
                 .checkRegistrationResult("Address", data.address)
                 .checkRegistrationResult("State and City", data.state + " " + data.city);
     }
