@@ -7,8 +7,8 @@ import pages.components.AdsBanners;
 import pages.components.Calendar;
 import pages.components.ResultTable;
 import java.util.List;
-import static com.codeborne.selenide.Condition.cssValue;
-import static com.codeborne.selenide.Condition.text;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -27,7 +27,8 @@ public class RegistrationPage {
     cityInput = $("#react-select-4-input"),
     submitButton = $("#submit"),
     genderLabel = $(".custom-control-label"),
-    pageTitle = $(".text-center");
+    pageTitle = $(".text-center"),
+    submittingForm = $(".modal-content");
 
     public RegistrationPage openPage(){
         open("/automation-practice-form");
@@ -96,6 +97,10 @@ public class RegistrationPage {
     }
     public RegistrationPage clickSubmit(){
         submitButton.click();
+        return this;
+    }
+    public RegistrationPage shouldAppearSubmittingForm(){
+        submittingForm.should(appear).shouldHave(text("Thanks for submitting the form"));
         return this;
     }
     public RegistrationPage checkRegistrationResult(String key, String value){

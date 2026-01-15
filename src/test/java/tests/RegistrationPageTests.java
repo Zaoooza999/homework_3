@@ -5,6 +5,7 @@ import pages.RegistrationPage;
 
 public class RegistrationPageTests extends TestBase{
 
+
     RegistrationPage registrationPage = new RegistrationPage();
     TestData data = new TestData();
 
@@ -24,19 +25,18 @@ public class RegistrationPageTests extends TestBase{
                 .setState(data.state)
                 .setCity(data.city)
                 .clickSubmit()
+                .shouldAppearSubmittingForm()
                 .checkRegistrationResult("Student Name", data.firstName+" "+data.lastName)
                 .checkRegistrationResult("Student Email", data.email)
                 .checkRegistrationResult("Gender", data.gender)
                 .checkRegistrationResult("Mobile", data.phoneNumber)
                 .checkRegistrationResult("Date of Birth", data.day+" "+data.month+"," +data.year)
                 .checkRegistrationResult("Subjects", data.subjectsExpected)
-                .checkRegistrationResult("Hobbies", data.hobbiesExpected);
-        System.out.println(data.nameOfPicture);
-                registrationPage.checkRegistrationResult("Picture", data.nameOfPicture)
+                .checkRegistrationResult("Hobbies", data.hobbiesExpected)
+                .checkRegistrationResult("Picture", data.nameOfPicture)
                 .checkRegistrationResult("Address", data.address)
                 .checkRegistrationResult("State and City", data.state + " " + data.city);
     }
-
     @Test
     void authorizationWithRequiredFieldsTest(){
         registrationPage.openPage()
