@@ -1,25 +1,23 @@
 package tests;
 
-import utils.RandomUtils;
-
 import java.nio.file.Path;
 import java.util.List;
 import static utils.RandomUtils.*;
 
 public class TestData {
-    String firstName = RandomUtils.getRandomFirstName(),
-            lastName = RandomUtils.getRandomLastName(),
-            email = RandomUtils.getRandomEmail(),
-            gender = RandomUtils.getRandomGender(),
-            phoneNumber = RandomUtils.getRandomPhoneNumber(),
-            day = RandomUtils.getRandomDay(),
-            month = RandomUtils.getRandomMonth(),
+    String firstName = getRandomFirstName(),
+            lastName = getRandomLastName(),
+            email = getRandomEmail(),
+            gender = getRandomGender(),
+            phoneNumber = getRandomPhoneNumber(),
+            day = getRandomDay(),
+            month = getRandomMonth(),
             year = getRandomYear(),
             picture = getRandomPicture(),
             nameOfPicture = Path.of(picture).getFileName().toString(),
-            address = RandomUtils.getRandomAddress(),
-            state = RandomUtils.getRandomState(),
-            city = RandomUtils.getRandomCityByState(state);
+            address = getRandomAddress(),
+            state = getRandomState(),
+            city = getRandomCityByState(state);
     public List<String> randomHobbies = getRandomHobbies(),
      randomSubjects = getRandomSubjects();
     String hobbiesExpected = String.join(", ", randomHobbies),
