@@ -18,7 +18,7 @@ public class TestData {
             address = getRandomAddress(),
             state = getRandomState(),
             city = getRandomCityByState(state);
-    public List<String> randomHobbies = getRandomHobbies(),
+    List<String> randomHobbies = getRandomHobbies(),
      randomSubjects = getRandomSubjects();
     String hobbiesExpected = String.join(", ", randomHobbies),
             subjectsExpected = String.join(", ", randomSubjects);
