@@ -3,7 +3,6 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import pages.components.AdsBanners;
 import pages.components.Calendar;
 import pages.components.ResultTable;
 import java.util.List;
@@ -26,16 +25,18 @@ public class RegistrationPage {
     stateInput = $("#react-select-3-input"),
     cityInput = $("#react-select-4-input"),
     submitButton = $("#submit"),
-    genderLabel = $(".custom-control-label"),
+    genderLabel = $("#genterWrapper .form-check-label"),
     pageTitle = $(".text-center"),
     submittingForm = $(".modal-content");
 
-    public RegistrationPage openPage(){
-        open("/automation-practice-form");
-        AdsBanners.hideBanners();
+    public void openPage(){
+        open("/");
+        $("[href='/forms']").click();
+        $("[href='/automation-practice-form']").click();
         pageTitle.shouldHave(text("Practice Form"));
-        return this;
     }
+
+
 
     public RegistrationPage setFirstName(String value){
         firstNameInput.setValue(value);
@@ -115,9 +116,8 @@ public class RegistrationPage {
         genderLabel.shouldHave(cssValue("border-color","rgb(220, 53, 69)"));
         return this;
     }
-    public RegistrationPage checkInvalidPhoneNumber(){
+    public void checkInvalidPhoneNumber(){
         phoneNumberInput.shouldHave(cssValue("border-color","rgb(220, 53, 69)"));
-        return this;
     }
 
 }

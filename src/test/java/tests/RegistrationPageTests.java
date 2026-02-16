@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import pages.components.AdsBanners;
 
 public class RegistrationPageTests extends TestBase{
 
@@ -11,8 +12,9 @@ public class RegistrationPageTests extends TestBase{
 
     @Test
     void fullAutorizationTest() {
-        registrationPage.openPage()
-                .setFirstName(data.firstName)
+        registrationPage.openPage();
+        AdsBanners.hideBanners();
+        registrationPage.setFirstName(data.firstName)
                 .setLastName(data.lastName)
                 .setEmail(data.email)
                 .setGender(data.gender)
@@ -39,8 +41,9 @@ public class RegistrationPageTests extends TestBase{
     }
     @Test
     void authorizationWithRequiredFieldsTest(){
-        registrationPage.openPage()
-                .setFirstName(data.firstName)
+        registrationPage.openPage();
+        AdsBanners.hideBanners();
+        registrationPage.setFirstName(data.firstName)
                 .setLastName(data.lastName)
                 .setGender(data.gender)
                 .setPhoneNumber(data.phoneNumber)
@@ -51,8 +54,9 @@ public class RegistrationPageTests extends TestBase{
     }
     @Test
     void negativeSubmitWithEmptyRequiredFieldsTest(){
-        registrationPage.openPage()
-                .setFirstName(data.firstName)
+        registrationPage.openPage();
+        AdsBanners.hideBanners();
+        registrationPage.setFirstName(data.firstName)
                 .clickSubmit()
                 .checkInvalidLastname()
                 .checkEmptyGender()
