@@ -39,6 +39,7 @@ public class RegistrationPageTests extends TestBase{
                 .checkRegistrationResult("Address", data.address)
                 .checkRegistrationResult("State and City", data.state + " " + data.city);
     }
+
     @Test
     void authorizationWithRequiredFieldsTest(){
         registrationPage.openPage();

@@ -7,6 +7,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class ResultTable
 {
     public static void checkResult(String key, String value) {
-        $(".table-responsive").$(byText(key)).sibling(0).shouldHave(text(value));
+        $(".table-responsive").$(byText(key)).parent().shouldHave(text(value));
     }
 }
