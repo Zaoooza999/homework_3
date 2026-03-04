@@ -1,6 +1,5 @@
 package pages;
 
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.Calendar;
@@ -28,6 +27,8 @@ public class RegistrationPage {
     genderLabel = $("#genterWrapper .form-check-label"),
     pageTitle = $(".text-center"),
     submittingForm = $(".modal-content");
+    private final Calendar calendar = new Calendar();
+    private final ResultTable resultTable = new ResultTable();
 
     public void openPage(){
         open("/");
@@ -63,7 +64,7 @@ public class RegistrationPage {
     }
     public RegistrationPage setBirthDate(String day, String month, String year){
         calendarInput.click();
-        Calendar.setDate(day, month, year);
+        calendar.setDate(day, month, year);
         return this;
     }
     public RegistrationPage setSubjects(List<String> subjects){
@@ -105,7 +106,7 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage checkRegistrationResult(String key, String value){
-        ResultTable.checkResult(key, value);
+        resultTable.checkResult(key, value);
         return this;
     }
     public RegistrationPage checkInvalidLastname(){
