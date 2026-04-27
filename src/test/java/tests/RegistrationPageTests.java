@@ -19,7 +19,8 @@ public class RegistrationPageTests extends TestBase{
                 .setEmail(data.email)
                 .setGender(data.gender)
                 .setPhoneNumber(data.phoneNumber)
-                .setBirthDate(data.day, data.month, data.year)
+                .closeBanner()
+                .setBirthDate(data.day, data.formatedMonthName, data.year)
                 .setSubjects(data.randomSubjects)
                 .setHobbies(data.randomHobbies)
                 .setPicture(data.picture)
@@ -32,7 +33,7 @@ public class RegistrationPageTests extends TestBase{
                 .checkRegistrationResult("Student Email", data.email)
                 .checkRegistrationResult("Gender", data.gender)
                 .checkRegistrationResult("Mobile", data.phoneNumber)
-                .checkRegistrationResult("Date of Birth", data.day+" "+data.month+"," +data.year)
+                .checkRegistrationResult("Date of Birth", data.year + "-" + data.formatedMonthNumber + "-" + data.day)
                 .checkRegistrationResult("Subjects", data.subjectsExpected)
                 .checkRegistrationResult("Hobbies", data.hobbiesExpected)
                 .checkRegistrationResult("Picture", data.nameOfPicture)
@@ -59,8 +60,6 @@ public class RegistrationPageTests extends TestBase{
         AdsBanners.hideBanners();
         registrationPage.setFirstName(data.firstName)
                 .clickSubmit()
-                .checkInvalidLastname()
-                .checkEmptyGender()
-                .checkInvalidPhoneNumber();
+                .checkAppearingWarningOfEmptyFields();
     }
-    }
+}

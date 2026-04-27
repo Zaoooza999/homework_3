@@ -10,7 +10,7 @@ public class TestBase {
     @BeforeAll
     static void setupConfig() {
         Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.baseUrl = "https://qa-guru.github.io";
         Configuration.pageLoadStrategy = "eager";
     }
 

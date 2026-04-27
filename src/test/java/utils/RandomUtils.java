@@ -1,12 +1,15 @@
 package utils;
 import com.github.javafaker.Faker;
-import java.time.Month;
 import java.time.Year;
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static org.apache.commons.lang3.ArrayUtils.indexOf;
 
 public class RandomUtils {
 
     private static final Faker faker = new Faker(new Locale("en-US"));
+    private static final String[] hobbies = {"Sports","Reading","Music"};
 
     public static String getRandomFirstName() {
         return faker.name().firstName();
@@ -29,10 +32,8 @@ public class RandomUtils {
         return faker.numerify("##########");
     }
 
-    public static String getRandomMonth() {
-        int randomMonthNumber = faker.number().numberBetween(1, 12);
-        String randomMonthName = Month.of(randomMonthNumber).name().toLowerCase();
-        return randomMonthName.substring(0,1).toUpperCase() + randomMonthName.substring(1);
+    public static Integer getRandomMonth() {
+        return faker.number().numberBetween(1, 12);
     }
     public static String getRandomYear() {
         int currentYear = Year.now().getValue();
@@ -41,8 +42,8 @@ public class RandomUtils {
     }
 
     public static List<String> getRandomSubjects() {
-        String[] subjects = {"Maths","Accounting","Arts","Social Studies","Physics","Chemistry",
-                "Computer Science","Commerce","Economics","Civics","English","Hindi","Biology","History"};
+        String[] subjects = {"Maths","Arts","Physics","Chemistry",
+                "Computer Science","Economics","Civics","English","Hindi","Biology","History"};
         int randomQuantityOfSubjects = faker.number().numberBetween(1, subjects.length + 1);
         List<String> subjectsList = new ArrayList<>(Arrays.asList(subjects));
         Collections.shuffle(subjectsList);
@@ -50,11 +51,16 @@ public class RandomUtils {
     }
 
     public static List<String> getRandomHobbies() {
-        String[] hobbies = {"Sports","Reading","Music"};
         int randomQuantityOfHobbies = faker.number().numberBetween(1, hobbies.length + 1);
         List<String> hobbiesList = new ArrayList<>(Arrays.asList(hobbies));
         Collections.shuffle(hobbiesList);
         return hobbiesList.subList(0, randomQuantityOfHobbies);
+    }
+
+    public static List<String> sortRandomHobbiesForAssertion(List<String> randomHobbiesList) {
+        return randomHobbiesList.stream()
+                .sorted(Comparator.comparingInt(h -> indexOf(hobbies, h)))
+                .collect(Collectors.toList());
     }
 
     public static String getRandomPicture() {

@@ -1,11 +1,10 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import pages.components.Calendar;
 import pages.components.ResultTable;
 import java.util.List;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -21,23 +20,26 @@ public class RegistrationPage {
     hobbiesInput = $("#hobbiesWrapper"),
     pictureInput = $("#uploadPicture"),
     currentAddressInput = $("#currentAddress"),
-    stateInput = $("#react-select-3-input"),
-    cityInput = $("#react-select-4-input"),
+    stateOptionsCaller = $("#state"),
+    cityOptionsCaller = $("#city"),
     submitButton = $("#submit"),
-    genderLabel = $("#genterWrapper .form-check-label"),
-    pageTitle = $(".text-center"),
-    submittingForm = $(".modal-content");
+    pageTitle = $("H1"),
+    submittingForm = $("#resultModal"),
+    closeBannerButton = $("[aria-label='Close']"),
+    warning = $("#formError");
+    private final ElementsCollection stateCityOptionsSelector = $$(".state-city-option");
     private final Calendar calendar = new Calendar();
     private final ResultTable resultTable = new ResultTable();
 
     public void openPage(){
-        open("/");
-        $("[href='/forms']").click();
-        $("[href='/automation-practice-form']").click();
+        open("/one-page-form/automation-practice-form.html");
         pageTitle.shouldHave(text("Practice Form"));
     }
 
-
+    public RegistrationPage closeBanner(){
+        closeBannerButton.click();
+        return this;
+    }
 
     public RegistrationPage setFirstName(String value){
         firstNameInput.setValue(value);
@@ -89,12 +91,13 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage setState(String value){
-        stateInput.setValue(value).pressEnter();
+        stateOptionsCaller.click();
+        stateCityOptionsSelector.findBy(text(value)).click();
         return this;
     }
     public RegistrationPage setCity(String value){
-        cityInput.shouldBe(Condition.enabled);
-        cityInput.setValue(value).pressEnter();
+        cityOptionsCaller.click();
+        stateCityOptionsSelector.findBy(text(value)).click();
         return this;
     }
     public RegistrationPage clickSubmit(){
@@ -109,16 +112,8 @@ public class RegistrationPage {
         resultTable.checkResult(key, value);
         return this;
     }
-    public RegistrationPage checkInvalidLastname(){
-        lastNameInput.shouldHave(cssValue("border-color","rgb(220, 53, 69)"));
+    public RegistrationPage checkAppearingWarningOfEmptyFields(){
+        warning.shouldBe(visible).shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
         return this;
     }
-    public RegistrationPage checkEmptyGender(){
-        genderLabel.shouldHave(cssValue("border-color","rgb(220, 53, 69)"));
-        return this;
-    }
-    public void checkInvalidPhoneNumber(){
-        phoneNumberInput.shouldHave(cssValue("border-color","rgb(220, 53, 69)"));
-    }
-
 }
