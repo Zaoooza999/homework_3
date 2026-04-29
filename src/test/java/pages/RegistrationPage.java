@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import pages.components.Calendar;
 import pages.components.ResultTable;
 import java.util.List;
@@ -31,6 +32,7 @@ public class RegistrationPage {
     private final Calendar calendar = new Calendar();
     private final ResultTable resultTable = new ResultTable();
 
+    @Step("Открыть страницу /one-page-form/automation-practice-form.html")
     public void openPage(){
         open("/one-page-form/automation-practice-form.html");
         pageTitle.shouldHave(text("Practice Form"));
@@ -40,12 +42,13 @@ public class RegistrationPage {
         closeBannerButton.click();
         return this;
     }
-
+    @Step("Ввести firstname {value}")
     public RegistrationPage setFirstName(String value){
         firstNameInput.setValue(value);
         return this;
     }
 
+    @Step("Ввести имя \"{value}\"")
     public RegistrationPage setLastName(String value){
         lastNameInput.setValue(value);
         return this;
