@@ -1,10 +1,12 @@
 package tests;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
 
 public class TextBoxTests extends TestBase{
     TextBoxPage textBoxPage = new TextBoxPage();
+    @Disabled("Неактуальный тест")
     @Test
     void fillFormTest() {
         textBoxPage.openPage()

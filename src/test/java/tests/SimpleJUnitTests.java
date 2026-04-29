@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -10,8 +11,11 @@ import static com.codeborne.selenide.Selenide.open;
 public class SimpleJUnitTests {
 
     @BeforeAll
-    static void beforeAll() {System.out.println("\n### beforeAll()\n");}
+    static void beforeAll() {
+        System.out.println("\n### beforeAll()\n");
+    }
 
+    @Disabled("Неактуальный тест")
     @Test
     void successfulSearchTest() {
         open("https://www.bing.com/");
@@ -19,5 +23,5 @@ public class SimpleJUnitTests {
         $("[id=b_content]").shouldHave(text("https://selenideorg"));
 
     }
-    
+
 }

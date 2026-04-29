@@ -38,10 +38,10 @@ public class RegistrationPageTests extends TestBase {
                     .setState(data.state)
                     .setCity(data.city);
         });
-        registrationPage.clickSubmit();
+        registrationPage.clickSubmit()
+                .shouldAppearSubmittingForm();
         step("Проверить данные на форме подтверждения", () -> {
-            registrationPage.shouldAppearSubmittingForm()
-                    .checkRegistrationResult("Student Name", data.firstName + " " + data.lastName)
+            registrationPage.checkRegistrationResult("Student Name", data.firstName + " " + data.lastName)
                     .checkRegistrationResult("Student Email", data.email)
                     .checkRegistrationResult("Gender", data.gender)
                     .checkRegistrationResult("Mobile", data.phoneNumber)
