@@ -26,35 +26,35 @@ public class RegistrationPage {
     submitButton = $("#submit"),
     pageTitle = $("H1"),
     submittingForm = $("#resultModal"),
-    closeBannerButton = $("[aria-label='Close']"),
-    warning = $("#formError");
+            closeBannerButton = $("[aria-label='Close']"),
+            warning = $("#formError");
     private final ElementsCollection stateCityOptionsSelector = $$(".state-city-option");
     private final Calendar calendar = new Calendar();
     private final ResultTable resultTable = new ResultTable();
 
     @Step("Открыть страницу /one-page-form/automation-practice-form.html")
-    public void openPage(){
+    public void openPage() {
         open("/one-page-form/automation-practice-form.html");
         pageTitle.shouldHave(text("Practice Form"));
     }
 
-    public RegistrationPage closeBanner(){
+    public RegistrationPage closeBanner() {
         closeBannerButton.click();
         return this;
     }
-    @Step("Ввести firstname {value}")
-    public RegistrationPage setFirstName(String value){
+
+    public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
-    @Step("Ввести имя \"{value}\"")
-    public RegistrationPage setLastName(String value){
+
+    public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
 
-    public RegistrationPage setEmail(String value){
+    public RegistrationPage setEmail(String value) {
         emailInput.setValue(value);
         return this;
     }
@@ -103,10 +103,12 @@ public class RegistrationPage {
         stateCityOptionsSelector.findBy(text(value)).click();
         return this;
     }
+    @Step("Нажать подтвердить")
     public RegistrationPage clickSubmit(){
         submitButton.click();
         return this;
     }
+    @Step("Проверить открытие формы подтверждения регистрации")
     public RegistrationPage shouldAppearSubmittingForm(){
         submittingForm.should(appear).shouldHave(text("Thanks for submitting the form"));
         return this;

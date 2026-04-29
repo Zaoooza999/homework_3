@@ -14,8 +14,9 @@ dependencies {
     testImplementation(
             'com.codeborne:selenide:7.16.0',
             'org.junit.jupiter:junit-jupiter:6.0.3',
-           'org.slf4j:slf4j-simple:2.0.17',
-            'com.github.javafaker:javafaker:1.0.2'
+            'org.slf4j:slf4j-simple:2.0.17',
+            'com.github.javafaker:javafaker:1.0.2',
+            'io.qameta.allure:allure-selenide:2.33.0'
     )
 }
 
