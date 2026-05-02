@@ -55,14 +55,18 @@ public class RegistrationPageTests extends TestBase {
     void authorizationWithRequiredFieldsTest() {
         registrationPage.openPage();
         AdsBanners.hideBanners();
+        step("Заполнить обязательные поля", () -> {
         registrationPage.setFirstName(data.firstName)
                 .setLastName(data.lastName)
                 .setGender(data.gender)
-                .setPhoneNumber(data.phoneNumber)
-                .clickSubmit()
-                .checkRegistrationResult("Student Name", data.firstName + " " + data.lastName)
+                .setPhoneNumber(data.phoneNumber);
+        });
+        registrationPage.clickSubmit();
+        step("Проверить данные на форме подтверждения", () -> {
+            registrationPage.checkRegistrationResult("Student Name", data.firstName + " " + data.lastName)
                 .checkRegistrationResult("Gender", data.gender)
                 .checkRegistrationResult("Mobile", data.phoneNumber);
+        });
     }
 
     @Test

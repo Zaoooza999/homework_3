@@ -42,7 +42,7 @@ public class RegistrationPage {
         closeBannerButton.click();
         return this;
     }
-
+    @Step("Ввести firstname - \"{value}\"")
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
@@ -117,6 +117,7 @@ public class RegistrationPage {
         resultTable.checkResult(key, value);
         return this;
     }
+    @Step("Проверить появление предупреждения \"Please fill required fields and enter a valid 10-digit mobile number.\"")
     public RegistrationPage checkAppearingWarningOfEmptyFields(){
         warning.shouldBe(visible).shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
         return this;
