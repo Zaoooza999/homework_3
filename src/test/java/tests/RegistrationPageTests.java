@@ -1,14 +1,11 @@
 package tests;
 
-
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import pages.components.AdsBanners;
-
+import helpers.AdsBanners;
 import static io.qameta.allure.Allure.step;
 
 public class RegistrationPageTests extends TestBase {
