@@ -38,40 +38,49 @@ public class RegistrationPage {
         pageTitle.shouldHave(text("Practice Form"));
     }
 
+    @Step("Закрыть баннер")
     public RegistrationPage closeBanner() {
         closeBannerButton.click();
         return this;
     }
-
+    @Step("Ввести firstname - \"{value}\"")
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
-
+    @Step("Ввести lastname - \"{value}\"")
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
 
+    @Step("Ввести Email - \"{value}\"")
     public RegistrationPage setEmail(String value) {
         emailInput.setValue(value);
         return this;
     }
 
+    @Step("Выбрать Gender - \"{value}\"")
     public RegistrationPage setGender(String value){
         genderInput.$(byText(value)).click();
         return this;
     }
+
+    @Step("Ввести phone number - \"{value}\"")
     public RegistrationPage setPhoneNumber(String value){
         phoneNumberInput.setValue(value);
         return this;
     }
+
+    @Step("Выбрать Date of Birth: \"{day}\", \"{month}\", \"{year}\"")
     public RegistrationPage setBirthDate(String day, String month, String year){
         calendarInput.click();
         calendar.setDate(day, month, year);
         return this;
     }
+
+    @Step("Выбрать Subjects - \"{subjects}\"")
     public RegistrationPage setSubjects(List<String> subjects){
         for (String subject : subjects) {
             subjectInput.setValue(subject).pressEnter();
@@ -79,25 +88,34 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Выбрать Hobbies - \"{hobbies}\"")
     public RegistrationPage setHobbies(List<String> hobbies) {
         for (String hobby : hobbies) {
             hobbiesInput.$(byText(hobby)).click();
         }
         return this;
     }
+
+    @Step("Выбрать картинку - \"{value}\"")
     public RegistrationPage setPicture(String value){
         pictureInput.uploadFromClasspath(value);
         return this;
     }
+
+    @Step("Ввести Current Address - \"{value}\"")
     public RegistrationPage setCurrentAddress(String value){
         currentAddressInput.setValue(value);
         return this;
     }
+
+    @Step("Выбрать State - \"{value}\"")
     public RegistrationPage setState(String value){
         stateOptionsCaller.click();
         stateCityOptionsSelector.findBy(text(value)).click();
         return this;
     }
+
+    @Step("Выбрать City - \"{value}\"")
     public RegistrationPage setCity(String value){
         cityOptionsCaller.click();
         stateCityOptionsSelector.findBy(text(value)).click();
@@ -113,10 +131,12 @@ public class RegistrationPage {
         submittingForm.should(appear).shouldHave(text("Thanks for submitting the form"));
         return this;
     }
+    @Step("Проверить, что \"{key}\" содержит \"{value}\"")
     public RegistrationPage checkRegistrationResult(String key, String value){
         resultTable.checkResult(key, value);
         return this;
     }
+    @Step("Проверить появление предупреждения \"Please fill required fields and enter a valid 10-digit mobile number.\"")
     public RegistrationPage checkAppearingWarningOfEmptyFields(){
         warning.shouldBe(visible).shouldHave(text("Please fill required fields and enter a valid 10-digit mobile number."));
         return this;

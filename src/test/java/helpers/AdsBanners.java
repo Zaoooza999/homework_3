@@ -1,4 +1,4 @@
-package pages.components;
+package helpers;
 
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 

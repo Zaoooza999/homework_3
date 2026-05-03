@@ -1,14 +1,11 @@
 package tests;
 
-
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
-import pages.components.AdsBanners;
-
+import helpers.AdsBanners;
 import static io.qameta.allure.Allure.step;
 
 public class RegistrationPageTests extends TestBase {
@@ -58,14 +55,18 @@ public class RegistrationPageTests extends TestBase {
     void authorizationWithRequiredFieldsTest() {
         registrationPage.openPage();
         AdsBanners.hideBanners();
+        step("Заполнить обязательные поля", () -> {
         registrationPage.setFirstName(data.firstName)
                 .setLastName(data.lastName)
                 .setGender(data.gender)
-                .setPhoneNumber(data.phoneNumber)
-                .clickSubmit()
-                .checkRegistrationResult("Student Name", data.firstName + " " + data.lastName)
+                .setPhoneNumber(data.phoneNumber);
+        });
+        registrationPage.clickSubmit();
+        step("Проверить данные на форме подтверждения", () -> {
+            registrationPage.checkRegistrationResult("Student Name", data.firstName + " " + data.lastName)
                 .checkRegistrationResult("Gender", data.gender)
                 .checkRegistrationResult("Mobile", data.phoneNumber);
+        });
     }
 
     @Test
