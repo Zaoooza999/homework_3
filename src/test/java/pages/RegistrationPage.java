@@ -54,11 +54,13 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Ввести Email - \"{value}\"")
     public RegistrationPage setEmail(String value) {
         emailInput.setValue(value);
         return this;
     }
 
+    @Step("Выбрать Gender - \"{value}\"")
     public RegistrationPage setGender(String value){
         genderInput.$(byText(value)).click();
         return this;
@@ -69,11 +71,15 @@ public class RegistrationPage {
         phoneNumberInput.setValue(value);
         return this;
     }
+
+    @Step("Выбрать Date of Birth: \"{day}\", \"{month}\", \"{year}\"")
     public RegistrationPage setBirthDate(String day, String month, String year){
         calendarInput.click();
         calendar.setDate(day, month, year);
         return this;
     }
+
+    @Step("Выбрать Subjects - \"{subjects}\"")
     public RegistrationPage setSubjects(List<String> subjects){
         for (String subject : subjects) {
             subjectInput.setValue(subject).pressEnter();
@@ -81,25 +87,34 @@ public class RegistrationPage {
         return this;
     }
 
+    @Step("Выбрать Hobbies - \"{hobbies}\"")
     public RegistrationPage setHobbies(List<String> hobbies) {
         for (String hobby : hobbies) {
             hobbiesInput.$(byText(hobby)).click();
         }
         return this;
     }
+
+    @Step("Выбрать картинку - \"{value}\"")
     public RegistrationPage setPicture(String value){
         pictureInput.uploadFromClasspath(value);
         return this;
     }
+
+    @Step("Ввести Current Address - \"{value}\"")
     public RegistrationPage setCurrentAddress(String value){
         currentAddressInput.setValue(value);
         return this;
     }
+
+    @Step("Выбрать State - \"{value}\"")
     public RegistrationPage setState(String value){
         stateOptionsCaller.click();
         stateCityOptionsSelector.findBy(text(value)).click();
         return this;
     }
+
+    @Step("Выбрать City - \"{value}\"")
     public RegistrationPage setCity(String value){
         cityOptionsCaller.click();
         stateCityOptionsSelector.findBy(text(value)).click();
