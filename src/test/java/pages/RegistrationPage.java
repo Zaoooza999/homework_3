@@ -38,6 +38,7 @@ public class RegistrationPage {
         pageTitle.shouldHave(text("Practice Form"));
     }
 
+    @Step("Закрыть баннер")
     public RegistrationPage closeBanner() {
         closeBannerButton.click();
         return this;
