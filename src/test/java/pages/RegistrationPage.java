@@ -48,7 +48,7 @@ public class RegistrationPage {
         return this;
     }
 
-
+    @Step("Ввести lastname - \"{value}\"")
     public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
@@ -63,6 +63,8 @@ public class RegistrationPage {
         genderInput.$(byText(value)).click();
         return this;
     }
+
+    @Step("Ввести phone number - \"{value}\"")
     public RegistrationPage setPhoneNumber(String value){
         phoneNumberInput.setValue(value);
         return this;
@@ -113,6 +115,7 @@ public class RegistrationPage {
         submittingForm.should(appear).shouldHave(text("Thanks for submitting the form"));
         return this;
     }
+    @Step("Проверить, что \"{key}\" содержит \"{value}\"")
     public RegistrationPage checkRegistrationResult(String key, String value){
         resultTable.checkResult(key, value);
         return this;
