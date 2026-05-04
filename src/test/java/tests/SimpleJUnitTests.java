@@ -1,27 +1,25 @@
 package tests;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class SimpleJUnitTests {
 
-    @BeforeAll
-    static void beforeAll() {
-        System.out.println("\n### beforeAll()\n");
+    @Test
+    void parametrisedTest() {
+    String environment = System.getProperty("environment","prod");
+        System.out.println("Test environment is: " + environment);
     }
 
-    @Disabled("Неактуальный тест")
-    @Test
-    void successfulSearchTest() {
-        open("https://www.bing.com/");
-        $("[name=q").setValue("selenide").pressEnter();
-        $("[id=b_content]").shouldHave(text("https://selenideorg"));
+@Test
+    void parametrisedTest1() {
+        String name = System.getProperty("name");
+        System.out.println("name is: " + name);
+    }
 
+    @Test
+    void propertyBrowserTest() {
+        String browser = System.getProperty("browser","chrome");
+        System.out.println("Browser is: " + browser);
     }
 
 }
