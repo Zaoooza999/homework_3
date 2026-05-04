@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class SimpleJUnitTests {
@@ -17,6 +18,7 @@ public class SimpleJUnitTests {
     }
 
     @Test
+    @Tag("test1")
     void propertyBrowserTest() {
         String browser = System.getProperty("browser","chrome");
         System.out.println("Browser is: " + browser);
