@@ -20,8 +20,11 @@ public class TestBase {
 
     @BeforeAll
     static void setupConfig() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://qa-guru.github.io";
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = System.getProperty("windowSize", "1920x1080");
+        Configuration.browserVersion = System.getProperty("browserVersion", "147.0.7727.138");
+        Configuration.baseUrl = System.getProperty("environmentUrl");//https://qa-guru.github.io
+        Configuration.headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
         Configuration.pageLoadStrategy = "eager";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -31,7 +34,7 @@ public class TestBase {
         ));
 
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = System.getProperty("selenoidUrl");//https://user1:1234@selenoid.autotests.cloud/wd/hub
     }
 
     @AfterEach
