@@ -14,7 +14,6 @@ public class RegistrationPageTests extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
     TestData data = new TestData();
 
-    @Disabled("Неактуальный тест")
     @Test
     @Feature("Registration")
     @Story("Registration form")
