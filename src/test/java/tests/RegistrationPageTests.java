@@ -2,7 +2,6 @@ package tests;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
@@ -52,7 +51,6 @@ public class RegistrationPageTests extends TestBase {
         });
     }
 
-    @Disabled("Неактуальный тест")
     @Test
     void authorizationWithRequiredFieldsTest() {
         registrationPage.openPage();
@@ -71,7 +69,6 @@ public class RegistrationPageTests extends TestBase {
         });
     }
 
-    @Disabled("Неактуальный тест")
     @Test
     void negativeSubmitWithEmptyRequiredFieldsTest() {
         registrationPage.openPage();
