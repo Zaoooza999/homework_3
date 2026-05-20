@@ -40,21 +40,13 @@ public class TestBase {
                 .savePageSource(true));;
     }
 
-    @AfterAll
-    static void cleanupAllureReports() {
-        SelenideLogger.removeListener("allure");
-    }
-
     @AfterEach
     void addAttachments() {
         Attach.attachScreenshot("Last screenshot");
         Attach.browserConsoleLogs();
         Attach.addVideo();
         Attach.pageHtmlSource();
-    }
-
-    @AfterEach
-    void tearDownWebDriver() {
         Selenide.closeWebDriver();
+        SelenideLogger.removeListener("allure");
     }
 }
