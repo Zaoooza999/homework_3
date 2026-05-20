@@ -5,7 +5,6 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,11 +34,7 @@ public class TestBase {
 
     @BeforeEach
     void addListener(){
-        //SelenideLogger.removeListener("allure");
-        SelenideLogger.addListener("allure", new AllureSelenide()
-                //.screenshots(true)
-                //.savePageSource(true)
-        );;
+        SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
     @AfterEach
@@ -48,6 +43,10 @@ public class TestBase {
         Attach.browserConsoleLogs();
         Attach.addVideo();
         Attach.pageHtmlSource();
+    }
+
+    @AfterEach
+    void endSession() {
         Selenide.closeWebDriver();
         SelenideLogger.removeListener("allure");
     }
