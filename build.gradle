@@ -31,7 +31,7 @@ tasks.withType(Test) {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 
-    systemProperty 'junit.jupiter.extensions.autodetection.enabled', 'true'
+    --systemProperty 'junit.jupiter.extensions.autodetection.enabled', 'true'
 
     testLogging {
         lifecycle {
