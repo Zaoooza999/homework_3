@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,11 +13,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 public class TestBase {
-
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
-    }
 
     @BeforeAll
     static void setupConfig() {
@@ -35,6 +31,12 @@ public class TestBase {
 
         Configuration.browserCapabilities = capabilities;
         Configuration.remote = System.getProperty("selenoidUrl");//https://user1:1234@selenoid.autotests.cloud/wd/hub
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void cleanupAllureReports() {
+        SelenideLogger.removeListener("allure");
     }
 
     @AfterEach
