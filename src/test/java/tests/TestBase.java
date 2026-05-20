@@ -31,6 +31,11 @@ public class TestBase {
 
         Configuration.browserCapabilities = capabilities;
         Configuration.remote = System.getProperty("selenoidUrl");//https://user1:1234@selenoid.autotests.cloud/wd/hub
+    }
+
+    @BeforeEach
+    void addListener(){
+        SelenideLogger.removeListener("allure");
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
