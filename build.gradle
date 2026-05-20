@@ -31,6 +31,8 @@ tasks.withType(Test) {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 
+    jvmArgs '-Djunit.jupiter.extensions.autodetection.enabled=true'
+
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
