@@ -36,7 +36,8 @@ public class TestBase {
     @BeforeEach
     void addListener(){
         SelenideLogger.removeListener("allure");
-        SelenideLogger.addListener("allure", new AllureSelenide());
+        SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true)
+                .savePageSource(true));;
     }
 
     @AfterAll
