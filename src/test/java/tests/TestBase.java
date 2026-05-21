@@ -38,16 +38,12 @@ public class TestBase {
     }
 
     @AfterEach
-    void addAttachments() {
+    void tearDown() {
         Attach.attachScreenshot("Last screenshot");
         Attach.browserConsoleLogs();
         Attach.addVideo();
         Attach.pageHtmlSource();
         SelenideLogger.removeListener("allure");
-    }
-
-    @AfterEach
-    void endSession() {
         Selenide.closeWebDriver();
     }
 }
