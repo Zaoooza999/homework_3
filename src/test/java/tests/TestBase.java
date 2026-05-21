@@ -43,7 +43,7 @@ public class TestBase {
         Attach.browserConsoleLogs();
         Attach.addVideo();
         Attach.pageHtmlSource();
-        SelenideLogger.removeListener("allure");
         Selenide.closeWebDriver();
+        SelenideLogger.removeListener("allure");
     }
 }
