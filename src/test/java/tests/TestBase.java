@@ -44,6 +44,5 @@ public class TestBase {
         Attach.addVideo();
         Attach.pageHtmlSource();
         Selenide.closeWebDriver();
-        SelenideLogger.removeListener("allure");
     }
 }
